@@ -72,8 +72,29 @@
           <template #header>
             <div class="clearfix">
               <span>待办事项</span>
+              <el-button style="float:right;padding:3px 0;" type="text">添加</el-button>
             </div>
           </template>
+          <el-table :show-header="false" :data="todoList" style="width:100%">
+            <el-table-column width="40">
+              <template slot-scope="scope">
+                <el-checkbox v-model="scope.row.status"></el-checkbox>
+              </template>
+            </el-table-column>
+            <el-table-column>
+              <template slot-scope="scope">
+                <div class="todo-item" :class="{'todo-item-del': scope.row.status,}">
+                  {{scope.row.title}}
+                </div>
+              </template>
+            </el-table-column>
+            <el-table-column width="60">
+              <template>
+                <i class="el-icon-edit"></i>
+                <i class="el-icon-delete"></i>
+              </template>
+            </el-table-column>
+          </el-table>
         </el-card>
       </el-col>
     </el-row>
@@ -119,13 +140,30 @@ export default {
       name,
       role,
       data,
-      data2
+      data2,
+      todoList: [
+        {
+          title: 'AAA',
+          status: false
+        },
+        {
+          title: 'BBB',
+          status: true
+        },
+        {
+          title: 'CCC',
+          status: true
+        },
+        {
+          title: 'DDD',
+          status: false
+        }
+      ]
     }
   },
   mounted () {
     // const { cname, xData, yData } = this
     const { data, data2 } = this;
-    console.log(this.$refs);
     this.$refs.chart_line_one.initChart(data.cname, data.xData, data.yData);
     this.$refs.chart_line_one2.initChart(data2.cname, data2.xData, data2.yData);
   },
@@ -215,5 +253,12 @@ export default {
 
 .grid-con-3 .grid-num {
   color: rgb(242, 94, 67);
+}
+.todo-item{
+  font-size: 14px;
+}
+.todo-item-del{
+  text-decoration: line-through;
+  color: #999;
 }
 </style>
