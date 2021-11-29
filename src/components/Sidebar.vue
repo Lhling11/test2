@@ -32,12 +32,12 @@
 </template>
 
 <script>
+import bus from '../components/bus';
 // import { computed } from 'vue';
 // import { useStore } from 'vuex';
 // import { useRoute } from 'vue-router';
 
 export default {
-  props: ['collapse'],
   data () {
     const items = [
       {
@@ -79,7 +79,12 @@ export default {
             ]
           }
         ]
-      }
+      },
+      {
+        icon: 'el-icon-sunny',
+        index: '/environment',
+        title: '环境实时数据'
+      },
     ];
     // const route = useRoute();
     // const onRoutes = computed(() => {
@@ -92,8 +97,8 @@ export default {
       items,
       // route
       // onRoutes
-      onRoutes: '/dashboard'
-      // collapse: false
+      onRoutes: '/dashboard',
+      collapse: false
     }
   },
   methods: {
@@ -104,6 +109,13 @@ export default {
     //   console.log(route.path);
     //   return route.path;
     // }
+  },
+  created() {
+    // 通过 Event Bus 进行组件间通信，来折叠侧边栏
+    bus.$on('collapse', msg => {
+      this.collapse = msg
+      bus.$emit('collapse-content', msg)
+    })
   }
 }
 </script>

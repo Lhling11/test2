@@ -43,6 +43,7 @@
 <script>
 // import { computed, onMounted } from 'vue';
 // import { useStore } from 'vuex';
+import bus from '../components/bus'
 export default {
   data () {
     const username = 'admin';
@@ -70,12 +71,13 @@ export default {
     }
   },
   methods: {
+    // 侧边栏折叠
     collapseChage () {
       // const store = useStore();
       // const collapse = computed(() => store.state.collapse);
       // store.commit('handleCollapse', !collapse.value)
       this.collapse = !this.collapse;
-      this.$emit('isCollapse', this.collapse)
+      bus.$emit('collapse', this.collapse)
     }
   }
 }

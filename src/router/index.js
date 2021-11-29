@@ -62,7 +62,15 @@ const routes = [
           title: '文本编辑器'
         },
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-      }
+      },
+      {
+        path: '/environment',
+        name: 'Environment',
+        meta: {
+          title: '环境实时数据'
+        },
+        component: () => import(/* webpackChunkName: "about" */ '../views/Environment.vue')
+      },
     ]
   },
   // {
