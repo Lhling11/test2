@@ -188,9 +188,10 @@ export default {
             width: 80%;
             .grid-content{
                 display: flex;
+                justify-content: space-between;
                 .grid-content-left{
                     float: left;
-                    width: 300px;
+                    width: 40%;
                     .grid-num{
                         font-size: 50px;
                         font-weight: bold;
@@ -199,6 +200,9 @@ export default {
                             font-size: 25px;
                         }
                     }
+                }
+                img{
+                    float: right;
                 }
             }
             .mgb20{
