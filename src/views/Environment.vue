@@ -3,8 +3,8 @@
     <div class="top-line">环境实时数据</div>
     <div class="item">
         <div class="item-list">
-            <span style="display:block;font-size:11px;">项目列表</span>
-            <el-input size="mini" placeholder="项目名称" style="width:70%"></el-input>
+            <span style="display:block;font-size:11px;margin:10px 0 10px 10px">项目列表</span>
+            <el-input size="mini" placeholder="项目名称" style="width:70%;margin:0 0 10px 10px"></el-input>
             <el-button size="mini" type="primary" style="margin-left:10px;width:60px;">搜索</el-button>
             <el-tree
               :data="data"
@@ -13,59 +13,61 @@
             </el-tree>
         </div>
         <div class="item-datas">
-            <div style="font-size:11px;"><span>更新时间:{{updateTime}}</span></div>
+            <div style="font-size:11px;margin-bottom:11px;"><span>更新时间:{{updateTime}}</span></div>
             <div>
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <el-card shadow="hover" class="mgb20" style="height: 252px;">
-                            <div>
-                                <div>
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>PM2.5</div>
-                                    <div class="grid-num">65</div>
+                                    <div class="grid-num" style="color:rgb(242, 94, 67);">{{EnvironmentDatas.PM25}}</div>
                                 </div>
+                                <ChartLine ref="chart_line_one" :data="data2" />
                             </div>
                         </el-card>
                     </el-col>
                     <el-col :span="12">
-                        <el-card shadow="hover" class="" style="height: 252px;">
-                            <div>
-                                <div>
+                        <el-card shadow="hover" class="mgb20" style="height: 252px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>PM10</div>
-                                    <div class="grid-num">65</div>
+                                    <div class="grid-num" style="color:rgb(242, 94, 67);">{{EnvironmentDatas.PM10}}</div>
                                 </div>
+                                <ChartLine ref="chart_line_one2" :data="data2" />
                             </div>
                         </el-card>
                     </el-col>
                 </el-row>
                 <el-row :gutter="20">
-                    <el-col :span="9">
-                        <el-card>
-                            <div>
-                                <div>
+                    <el-col :span="8">
+                        <el-card shadow="hover" class="mgb20" style="height: 240px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>温度</div>
-                                    <div>34</div>
+                                    <div class="grid-num">{{EnvironmentDatas.temperature}}<span>℃</span></div>
                                 </div>
                                 <img src="../assets/logo.png"/>
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="9">
-                        <el-card>
-                            <div>
-                                <div>
+                    <el-col :span="8">
+                        <el-card shadow="hover" class="mgb20" style="height: 240px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>湿度</div>
-                                    <div>50%</div>
+                                    <div class="grid-num">{{EnvironmentDatas.humidity}}<span>%</span></div>
                                 </div>
                                 <img src="../assets/logo.png"/>
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="9">
-                        <el-card>
-                            <div>
-                                <div>
+                    <el-col :span="8">
+                        <el-card shadow="hover" class="mgb20" style="height: 240px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>噪音</div>
-                                    <div>80bd</div>
+                                    <div class="grid-num">{{EnvironmentDatas.noise}}<span>bd</span></div>
                                 </div>
                                 <img src="../assets/logo.png"/>
                             </div>
@@ -73,34 +75,34 @@
                     </el-col>
                 </el-row>
                 <el-row :gutter="20">
-                    <el-col :span="9">
-                        <el-card>
-                            <div>
-                                <div>
+                    <el-col :span="8">
+                        <el-card shadow="hover" style="height: 240px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>雨量</div>
-                                    <div>100mm</div>
+                                    <div class="grid-num">{{EnvironmentDatas.rainfall}}<span>mm</span></div>
                                 </div>
                                 <img src="../assets/logo.png"/>
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="9">
-                        <el-card>
-                            <div>
-                                <div>
+                    <el-col :span="8">
+                        <el-card shadow="hover" style="height: 240px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>风向</div>
-                                    <div>西南风</div>
+                                    <div class="grid-num" style="font-size:30px;">{{EnvironmentDatas.windDirection}}</div>
                                 </div>
                                 <img src="../assets/logo.png"/>
                             </div>
                         </el-card>
                     </el-col>
-                    <el-col :span="9">
-                        <el-card>
-                            <div>
-                                <div>
+                    <el-col :span="8">
+                        <el-card shadow="hover" style="height: 240px;">
+                            <div class="grid-content">
+                                <div class="grid-content-left">
                                     <div>风力</div>
-                                    <div>12级</div>
+                                    <div class="grid-num">{{EnvironmentDatas.windPower}}<span>级</span></div>
                                 </div>
                                 <img src="../assets/logo.png"/>
                             </div>
@@ -114,7 +116,11 @@
 </template>
 
 <script>
+import ChartLine from '../partChart/chartLine.vue'
 export default {
+  components: {
+    ChartLine
+  },
   data(){
     return{
       data: [
@@ -138,7 +144,27 @@ export default {
         }
       ],
       updateTime: '2021-12-12 00:00:00',
+      EnvironmentDatas: {
+        PM25: '80',
+        PM10: '100',
+        temperature: '25',
+        humidity: '50', //湿度
+        noise: '50',
+        rainfall: '100',
+        windDirection: '西南风',
+        windPower: '12'
+      },
+      data2: {
+        cname: '张雪',
+        xData: ['2020-02', '2020-03', '2020-04', '2020-05'],
+        yData: [30, 132, 80, 134]
+      },
     }
+  },
+  mounted(){
+    const{data2} = this
+    this.$refs.chart_line_one.initChart(data2.cname,data2.xData,data2.yData)
+    this.$refs.chart_line_one2.initChart(data2.cname,data2.xData,data2.yData)
   }
 }
 </script>
@@ -154,12 +180,30 @@ export default {
             position: relative;
             float: left;
             width: 20%;
-            height: 800px;
+            height: 815px;
             background-color: #fff;
         }
         .item-datas{
             padding: 10px;
-            background-color: royalblue;
+            width: 80%;
+            .grid-content{
+                display: flex;
+                .grid-content-left{
+                    float: left;
+                    width: 300px;
+                    .grid-num{
+                        font-size: 50px;
+                        font-weight: bold;
+                        margin: 30% 0 0 30%;
+                        span{
+                            font-size: 25px;
+                        }
+                    }
+                }
+            }
+            .mgb20{
+                margin-bottom: 20px;
+            }
         }
     }
 }
