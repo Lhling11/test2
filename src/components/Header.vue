@@ -79,6 +79,11 @@ export default {
       this.collapse = !this.collapse;
       bus.$emit('collapse', this.collapse)
     }
+  },
+  mounted() {
+    if(document.body.clientWidth < 1500){
+      this.collapseChage()
+    }
   }
 }
 </script>

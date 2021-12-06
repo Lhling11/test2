@@ -48,7 +48,7 @@ export default {
       {
         icon: 'el-icon-menu',
         index: '/table',
-        title: '基础表格'
+        title: '综合表格'
       },
       {
         icon: 'el-icon-document-copy',
@@ -81,6 +81,11 @@ export default {
         ]
       },
       {
+        icon: 'el-icon-s-data',
+        index: '/chart',
+        title: '图表'
+      },
+      {
         icon: 'el-icon-sunny',
         index: '/environment',
         title: '环境实时数据'
@@ -95,20 +100,17 @@ export default {
     // const collapse = computed(() => store.state.collapse);
     return {
       items,
-      // route
-      // onRoutes
-      onRoutes: '/dashboard',
+      // onRoutes,
       collapse: false
     }
   },
   methods: {
   },
   computed: {
-    // onRoutes: function() {
-    //   const route = useRoute();
-    //   console.log(route.path);
-    //   return route.path;
-    // }
+    // 监听当前激活菜单的 index
+    onRoutes () {
+      return this.$route.path;
+    }
   },
   created() {
     // 通过 Event Bus 进行组件间通信，来折叠侧边栏
@@ -128,6 +130,9 @@ export default {
   top: 70px;
   bottom: 0;
   overflow-y: scroll;
+}
+.sidebar::-webkit-scrollbar {
+    width: 0;
 }
 .sidebar-el-menu:not(.el-menu--collapse){
   width: 250px;

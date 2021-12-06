@@ -28,6 +28,6 @@ module.exports = {
     // 关闭禁止混用tab和空格
     'no-mixed-space-and-tabs': [0],
     // 数组第一个制定是否启用这个规则，第二个指定几个空格
-    indent: [1, 2]
+    // indent: [1, 2]
   }
 }

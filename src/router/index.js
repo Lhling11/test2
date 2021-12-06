@@ -29,7 +29,7 @@ const routes = [
         meta: {
           title: '表格'
         },
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/Table.vue')
       },
       {
         path: '/tabs',
@@ -62,6 +62,14 @@ const routes = [
           title: '文本编辑器'
         },
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+      },
+      {
+        path: '/chart',
+        name: 'Chart',
+        meta: {
+          title: '图表'
+        },
+        component: () => import(/* webpackChunkName: "about" */ '../views/Chart.vue')
       },
       {
         path: '/environment',
